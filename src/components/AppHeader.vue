@@ -4,11 +4,7 @@
     <nav>
       <router-link to="/">Início</router-link>
       <router-link to="/about">Sobre</router-link>
-      <button
-        v-if="authStore.isAuthenticated"
-        class="logout-btn"
-        @click="handleLogout"
-      >
+      <button v-if="authStore.isAuthenticated" class="logout-btn" @click="handleLogout">
         Sair
       </button>
     </nav>
@@ -16,15 +12,15 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../../src/stores/auth.js'
 
-const router = useRouter();
-const authStore = useAuthStore();
+const router = useRouter()
+const authStore = useAuthStore()
 
 function handleLogout() {
-  authStore.logout();
-  router.push('/login');
+  authStore.logout()
+  router.push('/login')
 }
 </script>
 <style scoped>

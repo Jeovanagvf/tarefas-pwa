@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
@@ -12,7 +12,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         cleanupOutdatedCaches: true,
         sourcemap: false,
-             runtimeCaching: [
+        runtimeCaching: [
           {
             urlPattern: /^http:\/\/localhost:8001\/.*/i,
             handler: 'CacheFirst',
@@ -88,4 +88,4 @@ export default defineConfig({
       },
     }),
   ],
-});
+})

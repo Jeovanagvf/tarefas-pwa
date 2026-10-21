@@ -37,30 +37,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/stores/auth';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../../src/stores/auth.js'
+const router = useRouter()
+const authStore = useAuthStore()
 
-const router = useRouter();
-const authStore = useAuthStore();
-
-const email = ref('');
-const password = ref('');
-const loading = ref(false);
-const errorMessage = ref('');
+const email = ref('')
+const password = ref('')
+const loading = ref(false)
+const errorMessage = ref('')
 
 async function handleLogin() {
-  loading.value = true;
-  errorMessage.value = '';
+  loading.value = true
+  errorMessage.value = ''
   try {
-    await authStore.login(email.value, password.value);
-    router.push('/');
+    await authStore.login(email.value, password.value)
+    router.push('/')
   } catch (err) {
-    errorMessage.value =
-      err.response?.data?.detail ??
-      'Erro ao entrar. Verifique suas credenciais.';
+    errorMessage.value = err.response?.data?.detail ?? 'Erro ao entrar. Verifique suas credenciais.'
   } finally {
-    loading.value = false;
+    loading.value = false
   }
 }
 </script>
