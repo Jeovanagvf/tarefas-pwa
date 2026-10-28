@@ -56,6 +56,7 @@ watch(
   () => props.editingTask,
   (task) => {
     newTask.value = task ? task.title : ''
+    if (previewUrl.value) URL.revokeObjectURL(previewUrl.value);
     previewUrl.value = null
     imgAttachmentKey.value = null
   },
@@ -64,6 +65,7 @@ watch(
 async function handleImageChange(event) {
   const file = event.target.files[0]
   if (!file) return
+  if (previewUrl.value) URL.revokeObjectURL(previewUrl.value);
   previewUrl.value = URL.createObjectURL(file)
   uploading.value = true
   try {
@@ -92,6 +94,7 @@ function handleSubmit() {
 
 function handleCancel() {
   newTask.value = ''
+  if (previewUrl.value) URL.revokeObjectURL(previewUrl.value);
   previewUrl.value = null
   imgAttachmentKey.value = null
   emit('cancel')
