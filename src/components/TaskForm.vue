@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <div v-if="editingTask" class="image-section">
+    <div class="image-section">
       <img
         v-if="previewUrl || editingTask.img_url"
         :src="previewUrl || editingTask.img_url"
@@ -92,6 +92,12 @@ function handleSubmit() {
   imgAttachmentKey.value = null
 }
 
+  if (props.editingTask) {
+    emit('update', props.editingTask.id, payload);
+  } else {
+    emit('add', payload);
+  }
+  
 function handleCancel() {
   newTask.value = ''
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value);

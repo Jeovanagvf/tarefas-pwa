@@ -9,6 +9,11 @@ const tasksApi = {
     return apiClient.post('/tasks', { title });
   },
 
+  create(payload) {
+    return apiClient.post('/tasks', payload)
+  },
+
+
   update(id, data) {
     return apiClient.patch(`/tasks/${id}`, data);
   },
